@@ -8,6 +8,7 @@ type Task = {
 type TaskContextType = {
   tasks: Task[];
   addTask: (title: string) => void;
+  deleteTask: (id: string) => void;
 };
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -20,8 +21,12 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     setTasks((prev) => [...prev, newTask]);
   };
 
+  const deleteTask = (id: string) => {
+    setTasks((prev) => prev.filter((task) => task.id !== id));
+  };
+
   return (
-    <TaskContext.Provider value={{ tasks, addTask }}>
+    <TaskContext.Provider value={{ tasks, addTask, deleteTask }}>
       {children}
     </TaskContext.Provider>
   );
