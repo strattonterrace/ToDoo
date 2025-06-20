@@ -1,13 +1,13 @@
-import { Link } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
-export default function Home() {
+export default function AddTask() {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
-      <Text>Welcome to ToDoo 🚀</Text>
-      <Link href="/add">
-        <Button title="Go to Add Task" />
-      </Link>
+      <Text>Add a new task 🧠</Text>
+      <Button title="Go Back" onPress={() => router.back()} />
     </View>
   );
 }
